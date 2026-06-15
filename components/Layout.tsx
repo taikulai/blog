@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Header from './Header'
 import Footer from './Footer'
+import BackToTop from './BackToTop'
 import { siteConfig } from '@/lib/config'
 import { useState, useEffect } from 'react'
 
@@ -32,6 +33,12 @@ export default function Layout({ children, title, description }: LayoutProps) {
         <meta name="description" content={pageDesc} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDesc} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDesc} />
       </Head>
       <div className="fixed top-0 left-0 right-0 z-[60] h-0.5">
         <div
@@ -42,6 +49,7 @@ export default function Layout({ children, title, description }: LayoutProps) {
       <Header />
       <main className="flex-1 container-blog py-8">{children}</main>
       <Footer />
+      <BackToTop />
     </div>
   )
 }
