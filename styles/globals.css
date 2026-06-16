@@ -42,6 +42,338 @@
   }
 }
 
+/* ===== Intro Screen Styles (SimonAKing/HomePage inspired) ===== */
+.content-intro-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200vh;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.content-intro {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: transparent;
+  user-select: none;
+}
+
+.content-intro .content-inner {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: transparent;
+}
+
+.intro-wrap {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(200px);
+  transition: all 1s ease;
+}
+
+.intro-wrap.in {
+  opacity: 1;
+  transform: none;
+}
+
+.content-title {
+  font-family: "Helvetica Neue", "Microsoft Yahei", -apple-system, sans-serif;
+  font-size: 4.7rem;
+  font-weight: 200;
+  color: #fff;
+  line-height: 1;
+  margin-top: 0.8em;
+  margin-bottom: 0.3em;
+  animation: whiteShadow 1.5s ease-in-out infinite alternate;
+  text-shadow: rgb(69, 45, 45) 0 0 1px, rgb(255, 255, 251) 0 0 1px,
+    rgb(255, 255, 251) 0 0 2px;
+}
+
+@media screen and (max-width: 50em) {
+  .content-title {
+    font-size: 2rem;
+  }
+}
+
+@keyframes whiteShadow {
+  from {
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 5px #333,
+      0 0 8px #333, 0 0 9px #333, 0 0 10px #333, 0 0 15px #333;
+  }
+  to {
+    text-shadow: 0 0 0.5px #fff, 0 0 1px #fff, 0 0 1.5px #fff, 0 0 2px #333,
+      0 0 4px #333, 0 0 5px #333, 0 0 6px #333, 0 0 8px #333;
+  }
+}
+
+.content-subtitle {
+  color: #fff;
+  font-family: "Helvetica Neue", "Microsoft Yahei", -apple-system, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 200;
+  margin-bottom: 2em;
+  text-shadow: 0 0 4px #ffffff;
+}
+
+@media screen and (max-width: 1024px) {
+  .content-subtitle {
+    font-size: 1rem;
+  }
+}
+
+.content-subtitle span {
+  display: inline-block;
+  animation: letterGlow 0.7s 0s ease both;
+}
+
+@keyframes letterGlow {
+  0% {
+    opacity: 0;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+  66% {
+    opacity: 1;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+  }
+  77% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.enter-btn {
+  color: #fff;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  white-space: pre;
+  pointer-events: auto;
+  transition: all 0.4s;
+  z-index: 999;
+  position: relative;
+  cursor: pointer;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2s linear infinite;
+}
+
+.enter-btn:hover {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+.arrow {
+  position: absolute;
+  left: 49.5%;
+  top: 95%;
+  transform-origin: 50% 50%;
+  transform: translate3d(-50%, 0%, 0);
+}
+
+.arrow-1 {
+  animation: arrowMovement 2s ease-in-out infinite;
+}
+
+.arrow-2 {
+  animation: arrowMovement 2s 1s ease-in-out infinite;
+}
+
+.arrow::before,
+.arrow::after {
+  background: #fff;
+  content: "";
+  display: block;
+  height: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 13px;
+  box-shadow: 1px 1px 20px 0px #fff;
+}
+
+.arrow::before {
+  transform: rotate(45deg) translateX(-10%);
+  transform-origin: top left;
+}
+
+.arrow::after {
+  transform: rotate(-45deg) translateX(10%);
+  transform-origin: top right;
+}
+
+@keyframes arrowMovement {
+  0% {
+    opacity: 0;
+    top: 92%;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.shape-wrap {
+  position: relative;
+  z-index: 0;
+  margin: -5px 0 0 0;
+  will-change: scroll-position;
+  background: transparent;
+}
+
+.shape {
+  height: 100vh;
+  width: 100%;
+  display: block;
+  background: transparent;
+}
+
+.shape path {
+  fill: #060606;
+}
+
+/* ===== Main Content Styles ===== */
+.content-main-wrapper {
+  position: relative;
+  background: #060606;
+  min-height: 100vh;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0s linear 0.8s;
+}
+
+.content-main-wrapper.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.8s ease, visibility 0s linear 0s;
+}
+
+/* Hero Card */
+.hero-card {
+  max-width: 700px;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1s ease;
+}
+
+.hero-card.in {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-card-header {
+  margin-bottom: 40px;
+}
+
+.avatar-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #fff;
+  background: linear-gradient(135deg, #1e1b2e, #252240);
+  transition: 0.4s ease-in-out;
+  position: relative;
+  z-index: 2;
+}
+
+.avatar-circle:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.hero-name {
+  margin: 15px 15px 0;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1.2em;
+  font-weight: 300;
+  z-index: 2;
+  position: relative;
+}
+
+.hero-signature {
+  color: #ccc;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  font-weight: lighter;
+  z-index: 2;
+  position: relative;
+}
+
+.hero-nav {
+  position: relative;
+  margin: 0;
+  list-style-type: none;
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-around;
+  padding-bottom: 40px;
+}
+
+.hero-nav-item {
+  color: #b6b6b6;
+  transition: all 0.2s;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 12px 0;
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-nav-item:hover {
+  color: #f6f6f6;
+  text-shadow: 0 0 2px #f6f6f6;
+}
+
+@media screen and (max-width: 540px) {
+  .hero-name {
+    font-size: 1rem !important;
+  }
+  .hero-signature {
+    font-size: 0.8rem !important;
+  }
+  .hero-nav-item {
+    font-size: 0.8rem !important;
+  }
+}
+
 @layer components {
   .container-blog {
     @apply max-w-6xl mx-auto px-4;

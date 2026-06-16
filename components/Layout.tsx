@@ -9,9 +9,11 @@ interface LayoutProps {
   children: React.ReactNode
   title?: string
   description?: string
+  hideHeader?: boolean
+  hideFooter?: boolean
 }
 
-export default function Layout({ children, title, description }: LayoutProps) {
+export default function Layout({ children, title, description, hideHeader, hideFooter }: LayoutProps) {
   const pageTitle = title ? `${title} | ${siteConfig.title}` : siteConfig.title
   const pageDesc = description || siteConfig.description
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -40,16 +42,18 @@ export default function Layout({ children, title, description }: LayoutProps) {
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDesc} />
       </Head>
-      <div className="fixed top-0 left-0 right-0 z-[60] h-0.5">
-        <div
-          className="h-full bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink transition-all duration-150"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
-      <Header />
-      <main className="flex-1 container-blog py-8">{children}</main>
-      <Footer />
-      <BackToTop />
+      {!hideHeader && (
+        <div className="fixed top-0 left-0 right-0 z-[60] h-0.5">
+          <div
+            className="h-full bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink transition-all duration-150"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+      )}
+      {!hideHeader && <Header />}
+      <main className={`flex-1 ${hideHeader ? '' : 'container-blog py-8'}`}>{children}</main>
+      {!hideFooter && <Footer />}
+      {!hideHeader && <BackToTop />}
     </div>
   )
 }
